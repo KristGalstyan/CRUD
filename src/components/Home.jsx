@@ -1,9 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import useAction from '../hooks/useAction'
 
 function Home() {
   const users = useSelector((state) => state.users)
+
+  const { deleteUser } = useAction()
+  const userRemove = (id) => {
+    deleteUser(id)
+  }
 
   return (
     <div className="container">
@@ -34,7 +40,14 @@ function Home() {
                   >
                     Edit
                   </Link>
-                  <Link className="btn btn-sm btn-danger ms-2">Delete</Link>
+                  <button
+                    onClick={() => {
+                      userRemove(user.id)
+                    }}
+                    className="btn btn-sm btn-danger ms-2"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             )

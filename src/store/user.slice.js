@@ -16,6 +16,9 @@ const userSlice = createSlice({
         userFind.name = uname
         userFind.email = uemail
       }
+    },
+    deleteUser: (state, action) => {
+      return state.filter((user) => user.id !== action.payload)
     }
   }
 })
