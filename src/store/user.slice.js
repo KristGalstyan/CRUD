@@ -7,6 +7,15 @@ const userSlice = createSlice({
   reducers: {
     addUser: (state, action) => {
       state.push(action.payload)
+    },
+    upDateUser: (state, action) => {
+      const { id, uemail, uname } = action.payload
+
+      const userFind = state.find((user) => user.id === +id)
+      if (userFind) {
+        userFind.name = uname
+        userFind.email = uemail
+      }
     }
   }
 })

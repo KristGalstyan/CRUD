@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import useAction from '../hooks/useAction'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function Create() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const navigate = useNavigate()
   const { addUser } = useAction()
 
   const users = useSelector((user) => user.users)
@@ -12,6 +14,7 @@ function Create() {
   const handleSubmit = (event) => {
     event.preventDefault()
     addUser({ name, email, id: users[users.length - 1].id + 1 })
+    navigate('/')
   }
 
   return (

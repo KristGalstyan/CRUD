@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 function Home() {
   const users = useSelector((state) => state.users)
+
   return (
     <div className="container">
       <h2>Crud App with JSON server</h2>
@@ -27,8 +28,13 @@ function Home() {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button className="btn btn-sm btn-primary">Edit</button>
-                  <button className="btn btn-sm btn-danger ms-2">Delete</button>
+                  <Link
+                    to={`/edit/${user.id}`}
+                    className="btn btn-sm btn-primary"
+                  >
+                    Edit
+                  </Link>
+                  <Link className="btn btn-sm btn-danger ms-2">Delete</Link>
                 </td>
               </tr>
             )
